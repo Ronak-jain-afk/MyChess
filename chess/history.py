@@ -13,6 +13,19 @@ class PositionHistory:
         self.last_from_sq = from_sq
         self.last_to_sq = to_sq
 
+    def pop(self):
+        """Remove the last position from history."""
+        if self.keys:
+            self.keys.pop()
+            self.reversible.pop()
+            self.moves.pop()
+            if self.keys:
+                # Update last_from_sq, last_to_sq to previous move
+                self.last_from_sq, self.last_to_sq = self.moves[-1]
+            else:
+                self.last_from_sq = -1
+                self.last_to_sq = -1
+
     def is_threefold(self, key: int) -> bool:
         reversible_keys = [k for k, r in zip(self.keys, self.reversible) if r]
         count = sum(1 for k in reversible_keys if k == key)

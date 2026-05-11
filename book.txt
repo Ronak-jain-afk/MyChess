@@ -1,0 +1,6 @@
+# Opening book - Format: <position_fen> <move1> <move2> ...
+# Position FEN is just piece placement, not full FEN
+
+rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR e2e4 d2d4 e2e3
+rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR e7e5 c7c5 g8f6
+rnbqkbnr/pppppppp/8/8/8/4P3/PPPP1PPP/RNBQKBNR d7d5 e2e4

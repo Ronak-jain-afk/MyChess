@@ -65,7 +65,7 @@ class Move:
 
     @property
     def is_promotion(self) -> bool:
-        return self.flags & (FLAG_PROMO_QUEEN | FLAG_PROMO_ROOK | FLAG_PROMO_BISHOP | FLAG_PROMO_KNIGHT) != 0
+        return (self.flags & (FLAG_PROMO_QUEEN | FLAG_PROMO_ROOK | FLAG_PROMO_BISHOP | FLAG_PROMO_KNIGHT)) != 0
     
     def get_promotion_piece(self, color: int) -> int:
         """Get promotion piece based on moving side color"""

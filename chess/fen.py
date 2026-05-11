@@ -48,6 +48,9 @@ def validate_fen(fen: str):
             raise ValueError(f"Invalid FEN: en passant file must be a-h, got '{file_char}'")
         if rank_char not in '36':
             raise ValueError(f"Invalid FEN: en passant rank must be 3 or 6, got '{rank_char}'")
+        # Validate rank matches side to move: white (w) can only have rank 6, black (b) can only have rank 3
+        if (side == 'w' and rank_char != '6') or (side == 'b' and rank_char != '3'):
+            raise ValueError(f"Invalid FEN: en passant rank {rank_char} does not match side to move '{side}'")
     
     # Validate halfmove clock
     try:

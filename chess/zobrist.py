@@ -22,6 +22,8 @@ def init_zobrist():
         ZOBRIST_EN_PASSANT[sq] = random.getrandbits(64)
 
 def compute_key(board: list, side: int, castle: int, ep_square: int) -> int:
+    from chess.constants import wP, bP
+    
     key = 0
     for sq in range(64):
         piece = board[sq]
@@ -33,8 +35,16 @@ def compute_key(board: list, side: int, castle: int, ep_square: int) -> int:
 
     key ^= ZOBRIST_CASTLE[castle]
 
+    # CRITICAL: Only include en-passant if a pawn exists to capture it
     if ep_square >= 0:
-        key ^= ZOBRIST_EN_PASSANT[ep_square]
+        if side == 0:  # White to move, check if Black pawn exists at captured square
+            captured_sq = ep_square - 8  # Captured pawn is one rank below
+            if 0 <= captured_sq < 64 and board[captured_sq] == bP:
+                key ^= ZOBRIST_EN_PASSANT[ep_square]
+        else:  # Black to move, check if White pawn exists at captured square
+            captured_sq = ep_square + 8  # Captured pawn is one rank above
+            if 0 <= captured_sq < 64 and board[captured_sq] == wP:
+                key ^= ZOBRIST_EN_PASSANT[ep_square]
 
     return key
 
