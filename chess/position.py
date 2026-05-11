@@ -182,13 +182,14 @@ class Position:
             elif move.frm == 63:
                 self.castle_rights[0] &= ~CASTLE_BK
 
-        if move.to == 0:
+        captured_piece = state.captured
+        if move.to == 0 and captured_piece == wR:
             self.castle_rights[0] &= ~CASTLE_WQ
-        elif move.to == 7:
+        elif move.to == 7 and captured_piece == wR:
             self.castle_rights[0] &= ~CASTLE_WK
-        elif move.to == 56:
+        elif move.to == 56 and captured_piece == bR:
             self.castle_rights[0] &= ~CASTLE_BQ
-        elif move.to == 63:
+        elif move.to == 63 and captured_piece == bR:
             self.castle_rights[0] &= ~CASTLE_BK
 
         if from_piece in (wP, bP) or state.captured != EMPTY:
@@ -209,8 +210,8 @@ class Position:
     def unmake_move(self, state, move):
         from chess.constants import wP, bP
 
-        # Determine color of moving side (it's already flipped, so use opposite)
-        color = Color.BLACK if self.side_to_move[0] == 0 else Color.WHITE
+        # Determine color of moving side: side_to_move has already been flipped, so current side didn't move
+        color = Color.WHITE if self.side_to_move[0] == 0 else Color.BLACK
 
         if move.is_en_passant:
             # Calculate captured pawn square based on moving color
@@ -242,6 +243,7 @@ class Position:
         self.halfmove_clock[0] = state.old_halfmove
         self.fullmove_number[0] = state.old_fullmove
         self.side_to_move[0] = 1 - self.side_to_move[0]
+        self.history.pop()  # CRITICAL: Clean up history on unmake
 
     def push(self, move):
         return self.make_move(move)
@@ -259,3 +261,9 @@ class PositionState:
         self.halfmove_clock = pos.halfmove_clock[0]
         self.fullmove_number = pos.fullmove_number[0]
         self.key = pos.key
+        # Important: copy history for legal move generation
+        self.history_keys = pos.history.keys.copy()
+        self.history_reversible = pos.history.reversible.copy()
+        self.history_moves = pos.history.moves.copy()
+        self.history_last_from_sq = pos.history.last_from_sq
+        self.history_last_to_sq = pos.history.last_to_sq
