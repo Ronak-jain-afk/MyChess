@@ -160,5 +160,5 @@ MIT License
 
 ## Credits
 
-- Chess Programming Wiki (chessprogramming.org) for algorithms
+- [Chess Programming Wiki](chessprogramming.org) for algorithms
 - UCI protocol specification
