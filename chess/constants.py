@@ -1,4 +1,5 @@
 from enum import IntEnum
+from typing import Optional
 
 class Color(IntEnum):
     WHITE = 0
@@ -33,7 +34,7 @@ MATERIAL_VALUES = {
     PieceType.KING: 20000,
 }
 
-def piece_color(piece: int) -> Color:
+def piece_color(piece: int) -> Optional[Color]:
     if piece == EMPTY:
         return None
     return Color.WHITE if piece <= 6 else Color.BLACK

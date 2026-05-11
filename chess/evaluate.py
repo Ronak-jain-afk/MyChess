@@ -88,11 +88,6 @@ PST = {
     PieceType.KING: KING_PST,
 }
 
-PIECE_VALUES = {
-    wP: 1, wN: 2, wB: 3, wR: 4, wQ: 5, wK: 6,
-    bP: 7, bN: 8, bB: 9, bR: 10, bQ: 11, bK: 12,
-}
-
 def mirror_square(sq):
     return (7 - (sq // 8)) * 8 + (sq % 8)
 

@@ -66,15 +66,6 @@ class Move:
     @property
     def is_promotion(self) -> bool:
         return self.flags & (FLAG_PROMO_QUEEN | FLAG_PROMO_ROOK | FLAG_PROMO_BISHOP | FLAG_PROMO_KNIGHT) != 0
-
-    @property
-    def promotion_piece(self) -> int:
-        if not self.is_promotion:
-            return 0
-        for flag, piece in PROMO_PIECES_WHITE.items():
-            if self.flags & flag:
-                return piece
-        return 0
     
     def get_promotion_piece(self, color: int) -> int:
         """Get promotion piece based on moving side color"""
@@ -118,6 +109,8 @@ def move_from_string(s: str, from_sq: int) -> Move:
             flags = FLAG_PROMO_BISHOP
         elif promo == 'n':
             flags = FLAG_PROMO_KNIGHT
+        else:
+            raise ValueError(f"Invalid promotion character: {s[4]}")
 
     return Move(from_sq, to_sq, flags)
 

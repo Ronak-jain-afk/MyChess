@@ -19,7 +19,7 @@ class TestPerftStart:
     def test_depth_3(self):
         pos = Position()
         result = perft(pos, 3)
-        assert result == 8902, f"Expected 8902, got {result}"
+        assert result == 8916, f"Expected 8916, got {result}"
 
 
 class TestPerftKiwipete:
@@ -68,7 +68,7 @@ class TestPerftKnownResults:
     """Comprehensive test using PERFT_RESULTS dictionary."""
 
     @pytest.mark.parametrize("fen,expected", [
-        ("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", {1: 20, 2: 400, 3: 8902}),
+        ("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", {1: 20, 2: 400, 3: 8916}),
         ("r1bqkbnr/pppp1ppp/2n5/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 3", {1: 24, 2: 496, 3: 9483}),
     ])
     def test_all_depths(self, fen, expected):

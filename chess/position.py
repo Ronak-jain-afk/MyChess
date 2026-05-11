@@ -165,7 +165,7 @@ class Position:
 
         from_piece = state.from_piece
         if from_piece in (wP, bP) and abs(move.to - move.frm) == 16:
-            self.ep_square[0] = (move.frm + move.to) // 2
+            self.ep_square[0] = move.to
 
         if from_piece == wK:
             self.castle_rights[0] &= ~(CASTLE_WK | CASTLE_WQ)
