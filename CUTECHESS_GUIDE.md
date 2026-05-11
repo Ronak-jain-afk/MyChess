@@ -4,7 +4,7 @@ This guide explains how to set up OpenCodeChess in Cutechess.
 
 ## Option 1: Using .exe (Recommended - No Python Required!)
 
-Download `OpenChess_forwindowsV1.exe` from the [Releases](https://github.com/Ronak-jain-afk/MyChess/releases/tag/OpenChessV1) page.
+Download `OpenChess_forwindowsV1.exe` from the [Releases](https://github.com/Ronak-jain-afk/MyChess/releases) page.
 
 ### Setup Steps
 
