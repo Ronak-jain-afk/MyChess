@@ -170,7 +170,7 @@ def search_worker(self):
 ```python
 def run(self):
     # ❌ WRONG: Sends on startup before command received
-    print("id name OpenCodeChess")
+    print("id name openchess")
     print("id author Developer")
     print("uciok")
     sys.stdout.flush()
@@ -179,7 +179,7 @@ def run(self):
         # ...
         if parts[0] == "uci":
             # ❌ WRONG: Sends AGAIN here
-            print("id name OpenCodeChess")
+            print("id name openchess")
             print("id author Developer")
             print("uciok")
             sys.stdout.flush()
@@ -226,7 +226,7 @@ def run(self):
 
         if parts[0] == "uci":
             # ✅ CORRECT: Only send here
-            print("id name OpenCodeChess")
+            print("id name openchess")
             print("id author Developer")
             print("uciok")
             sys.stdout.flush()

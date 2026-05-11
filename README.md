@@ -1,4 +1,4 @@
-# OpenCodeChess
+# OpenChess
 
 A Python-based UCI-compatible chess engine with search, evaluation, and opening book support.
 

@@ -1,6 +1,6 @@
 # COMPREHENSIVE BUG AUDIT - CONSOLIDATED REFERENCE
 
-**Project:** OpenCodeChess Engine  
+**Project:** openchess Engine  
 **Audit Date:** 2026-05-11  
 **Total Bugs Found:** 37 (12 HIGH + 18 MEDIUM + 7 LOW)  
 **Status:** Partially Fixed (8 Critical Bugs Fixed in Milestone 11)
@@ -188,7 +188,7 @@ elif parts[0] == "ucinewgame":
 **Current Code:**
 ```python
 def run(self):
-    print("id name OpenCodeChess")      # Sent immediately on startup
+    print("id name openchess")      # Sent immediately on startup
     print("id author Developer")
     print("uciok")
     sys.stdout.flush()
@@ -196,7 +196,7 @@ def run(self):
     while True:
         # ...
         if parts[0] == "uci":
-            print("id name OpenCodeChess")  # Sent AGAIN here!
+            print("id name openchess")  # Sent AGAIN here!
             print("id author Developer")
             print("uciok")
 ```
@@ -215,7 +215,7 @@ def run(self):
     while True:
         # ...
         if parts[0] == "uci":
-            print("id name OpenCodeChess")
+            print("id name openchess")
             print("id author Developer")
             print("uciok")
             sys.stdout.flush()

@@ -1,4 +1,4 @@
-# Quick Start: Using OpenCodeChess with Cutechess
+# Quick Start: Using openchess with Cutechess
 
 ## Installation (Already Done)
 
@@ -13,7 +13,7 @@ C:\Users\ronak\OneDrive\Desktop\projects\chess\
 
 1. **In Cutechess**, go to **Engines → Manage → New Engine**
 2. Set these values:
-   - **Name**: OpenCodeChess
+   - **Name**: openchess
    - **Command**: `C:\Users\ronak\OneDrive\Desktop\projects\chess\run_engine.bat`
    - **Working Directory**: `C:\Users\ronak\OneDrive\Desktop\projects\chess`
    - **Protocol**: UCI
@@ -25,7 +25,7 @@ C:\Users\ronak\OneDrive\Desktop\projects\chess\
 
 1. **In Cutechess**, go to **Engines → Manage → New Engine**
 2. Set these values:
-   - **Name**: OpenCodeChess
+   - **Name**: openchess
    - **Command**: `python3 -u C:/Users/ronak/OneDrive/Desktop/projects/chess/main_uci.py`
    - **Working Directory**: `C:\Users\ronak\OneDrive\Desktop\projects\chess`
    - **Protocol**: UCI

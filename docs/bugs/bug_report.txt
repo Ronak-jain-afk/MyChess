@@ -176,14 +176,14 @@ Type: Protocol Violation
 
 Code:
   def run(self):
-      print("id name OpenCodeChess")      # Sent immediately on startup
+      print("id name openchess")      # Sent immediately on startup
       print("id author Developer")
       print("uciok")
       
       while True:
           # ...
           if parts[0] == "uci":
-              print("id name OpenCodeChess")  # Sent AGAIN here!
+              print("id name openchess")  # Sent AGAIN here!
               print("id author Developer")
               print("uciok")
 
@@ -202,7 +202,7 @@ Suggested Fix:
       # Don't print anything until 'uci' command received
       while True:
           if parts[0] == "uci":
-              print("id name OpenCodeChess")
+              print("id name openchess")
               print("id author Developer")
               print("uciok")
               sys.stdout.flush()
