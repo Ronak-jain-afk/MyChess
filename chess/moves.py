@@ -82,26 +82,33 @@ def is_attacked_by(pos, sq, by_color):
     # We check if enemy pawn can attack the given square via en passant
     ep_sq = pos.ep_square[0]
     if ep_sq >= 0:
+        ep_file = file_of(ep_sq)
+        ep_rank = rank_of(ep_sq)
+        sq_file = file_of(sq)
+        sq_rank = rank_of(sq)
+        
         if by_color == Color.WHITE:
-            # Black pawn captures en passant moving down to ep_sq
-            # Black pawn would be at ep_sq + 8 (one rank above, since black moves down)
-            # Black pawn attacks diagonally down-left or down-right
-            if file_of(sq) > 0 and sq == ep_sq + 7:  # diagonal down-right from black pawn perspective
-                if pos.board[ep_sq + 8] == bP:
-                    return True
-            if file_of(sq) < 7 and sq == ep_sq + 9:  # diagonal down-left from black pawn perspective
-                if pos.board[ep_sq + 8] == bP:
-                    return True
+            # Black pawn attacks en passant by moving to ep_sq
+            # Black pawns are on the 4th rank (rank 3) when en passant is available
+            # They attack diagonally downward (toward rank 0)
+            # ep_sq is the target square for en passant capture
+            # If white king is on ep_sq, check if black pawn on rank above can capture
+            if sq_rank == ep_rank:
+                if sq_file == ep_file - 1 or sq_file == ep_file + 1:
+                    pawn_sq = (ep_rank + 1) * 8 + sq_file
+                    if 0 <= pawn_sq < 64 and pos.board[pawn_sq] == bP:
+                        return True
         else:
-            # White pawn captures en passant moving up to ep_sq
-            # White pawn would be at ep_sq - 8 (one rank below, since white moves up)
-            # White pawn attacks diagonally up-left or up-right
-            if file_of(sq) > 0 and sq == ep_sq - 7:  # diagonal up-left from white pawn perspective
-                if pos.board[ep_sq - 8] == wP:
-                    return True
-            if file_of(sq) < 7 and sq == ep_sq - 9:  # diagonal up-right from white pawn perspective
-                if pos.board[ep_sq - 8] == wP:
-                    return True
+            # White pawn attacks en passant by moving to ep_sq
+            # White pawns are on the 5th rank (rank 4) when en passant is available
+            # They attack diagonally upward (toward rank 7)
+            # ep_sq is the target square for en passant capture
+            # If black king is on ep_sq, check if white pawn on rank below can capture
+            if sq_rank == ep_rank:
+                if sq_file == ep_file - 1 or sq_file == ep_file + 1:
+                    pawn_sq = (ep_rank - 1) * 8 + sq_file
+                    if 0 <= pawn_sq < 64 and pos.board[pawn_sq] == wP:
+                        return True
 
     # Knight attacks
     bb = KNIGHT_ATTACKS[sq]

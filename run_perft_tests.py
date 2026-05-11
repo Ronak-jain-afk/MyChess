@@ -10,7 +10,7 @@ def run_tests():
     print("=" * 50)
 
     test_positions = [
-        ("Start", "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", {1: 20, 2: 400, 3: 8916}),
+        ("Start", "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", {1: 20, 2: 400, 3: 8902}),
     ]
 
     passed = 0

@@ -165,7 +165,7 @@ class Position:
 
         from_piece = state.from_piece
         if from_piece in (wP, bP) and abs(move.to - move.frm) == 16:
-            self.ep_square[0] = move.to
+            self.ep_square[0] = (move.to + move.frm) // 2
 
         if from_piece == wK:
             self.castle_rights[0] &= ~(CASTLE_WK | CASTLE_WQ)
@@ -201,7 +201,7 @@ class Position:
         if self.side_to_move[0] == 0:
             self.fullmove_number[0] += 1
 
-        reversible = from_piece in (wP, bP) or state.captured != EMPTY
+        reversible = not (from_piece in (wP, bP) or state.captured != EMPTY)
         self.history.push(self.key, reversible, move.frm, move.to)
 
         return state

@@ -15,8 +15,6 @@ def negamax(pos: Position, depth: int, alpha: int, beta: int) -> int:
             return -INF + (10 - depth)  # Checkmate favor sooner
         return 0  # Stalemate/draw
 
-    color = 1 if pos.side_to_move[0] == 1 else -1
-
     max_eval = -INF
     for move in moves:
         state = pos.make_move(move)
@@ -53,6 +51,8 @@ def negamax_root(pos: Position, depth: int) -> tuple[Move, int]:
             best_move = move
         if best_score > alpha:
             alpha = best_score
+        if alpha >= beta:
+            break
 
     return best_move, best_score
 

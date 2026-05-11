@@ -71,6 +71,11 @@ class Move:
         """Get promotion piece based on moving side color"""
         if not self.is_promotion:
             return 0
+        # Verify exactly one promotion flag is set
+        promo_flags = self.flags & (FLAG_PROMO_QUEEN | FLAG_PROMO_ROOK | FLAG_PROMO_BISHOP | FLAG_PROMO_KNIGHT)
+        assert promo_flags in [FLAG_PROMO_QUEEN, FLAG_PROMO_ROOK, FLAG_PROMO_BISHOP, FLAG_PROMO_KNIGHT], \
+            f"Multiple or invalid promotion flags: {promo_flags:#x}"
+        
         promo_dict = PROMO_PIECES_WHITE if color == 0 else PROMO_PIECES_BLACK
         for flag, piece in promo_dict.items():
             if self.flags & flag:

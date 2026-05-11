@@ -111,8 +111,8 @@ def set_fen(fen: str, board: list, side_to_move: List[int], castle: List[int], e
         rank = ord(parts[3][1]) - ord('1')
         ep_square[0] = rank * 8 + file
 
-    halfmove[0] = int(parts[4]) if len(parts) > 4 else 0
-    fullmove[0] = int(parts[5]) if len(parts) > 5 else 1
+    halfmove[0] = int(parts[4])
+    fullmove[0] = int(parts[5])
 
 def get_fen(board: list, side_to_move: List[int], castle: List[int], ep_square: List[int], halfmove: List[int], fullmove: List[int]) -> str:
     placement = []
