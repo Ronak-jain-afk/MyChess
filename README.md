@@ -1,12 +1,15 @@
-# OpenChess
+# OpenCodeChess
 
 A Python-based UCI-compatible chess engine with search, evaluation, and opening book support.
 
 ## Quick Start
 
-**Using with Cutechess GUI?** See [CUTECHESS_GUIDE.md](CUTECHESS_GUIDE.md)
+### Option 1: Using the .exe (Recommended for Windows)
 
-**Just want to run it?**
+Download `chess_engine.exe` from the [Releases](https://github.com/yourusername/chess/releases) page and use it directly in any UCI-compatible chess GUI (Cutechess, Arena, Chessbase, etc.).
+
+### Option 2: Using Python
+
 ```bash
 python3 -u main_uci.py
 ```
@@ -23,18 +26,31 @@ python3 -u main_uci.py
 
 ## Requirements
 
+### For .exe
+- Windows 10/11 (64-bit)
+- No Python required - fully standalone!
+
+### For Python
 - Python 3.8+
 - No external dependencies (pure Python)
 
 ## Running the Engine
 
-### Basic (from project root)
+### .exe (Standalone)
+
+Simply run `chess_engine.exe` - it accepts UCI commands via stdin:
+
+```batch
+chess_engine.exe
+```
+
+### Python Source
 
 ```bash
 python3 -u main_uci.py
 ```
 
-### With custom opening book
+### With custom opening book (Python only)
 
 Create or edit `book.txt` with your opening lines:
 ```
@@ -42,6 +58,18 @@ rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR e2e4 d2d4
 ```
 
 The engine will automatically use moves from the book when available.
+
+## Cutechess Setup
+
+See [CUTECHESS_GUIDE.md](CUTECHESS_GUIDE.md) for detailed setup instructions.
+
+Quick setup with .exe:
+1. Open Cutechess → Engines → Manage → New Engine
+2. Set:
+   - **Name**: OpenCodeChess
+   - **Command**: `C:\path\to\chess_engine.exe`
+   - **Working Directory**: `C:\path\to\`
+   - **Protocol**: UCI
 
 ## UCI Commands Supported
 
@@ -94,12 +122,12 @@ chess/
 
 ### Search Depth
 
-Modify `main_uci.py` or pass depth via UCI:
+Pass depth via UCI:
 ```
 go depth 10
 ```
 
-### Opening Book
+### Opening Book (Python only)
 
 Edit `book.txt` in the format:
 ```
