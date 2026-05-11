@@ -198,8 +198,20 @@ class UCIController:
             if search.is_checkmate(self.score):
                 break
 
+        # Validate best_move is actually legal before outputting
+        if self.best_move:
+            legal = pos.generate_legal_moves()
+            is_legal = any(m.frm == self.best_move.frm and m.to == self.best_move.to for m in legal)
+            if not is_legal:
+                # Fallback to first legal move if search returned illegal
+                if legal:
+                    self.best_move = legal[0]
+                else:
+                    self.best_move = None
+        
         # Always print bestmove exactly once (no race condition)
-        print(f"bestmove {self.move_to_uci(self.best_move)}")
+        move_uci = self.move_to_uci(self.best_move) if self.best_move else "0000"
+        print(f"bestmove {move_uci}")
         sys.stdout.flush()
 
     def stop_search(self):
