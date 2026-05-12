@@ -6,7 +6,7 @@ A Python-based UCI-compatible chess engine with search, evaluation, and opening 
 
 ### Option 1: Using the .exe (Recommended for Windows)
 
-Download `chess_engine.exe` from the [Releases](https://github.com/Ronak-jain-afk/MyChess/releases) page and use it directly in any UCI-compatible chess GUI (Cutechess, Arena, Chessbase, etc.).
+Download `OpenChess_forwindowsV1.exe` from the [Releases](https://github.com/Ronak-jain-afk/MyChess/releases) page and use it directly in any UCI-compatible chess GUI (Cutechess, Arena, Chessbase, etc.).
 
 ### Option 2: Using Python
 
